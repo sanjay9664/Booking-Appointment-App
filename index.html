@@ -87,7 +87,7 @@
 
     let btn = document.createElement("button");
 
-    btn.innerText = "Delete";
+    btn.innerText = "Delete User";
 
     btn.style.padding = "5px";
     btn.style.margin = "10px";
@@ -96,7 +96,7 @@
     });
 
     let btnn = document.createElement("button");
-    btnn.innerText = "Edit";
+    btnn.innerText = "Edit User";
     btnn.style.padding = "5px";
     btnn.style.margin = "10px";
     btnn.addEventListener("click", function () {
@@ -115,7 +115,11 @@
     }
 
     function edit(el, index) {
-      console.log(edit);
+      let form = document.getElementById("container");
+
+      let childHtml = `<li>${el.name} ${el.email} ${el.phone}`;
+
+      form.innerHTML = childHtml;
     }
   });
 </script>
