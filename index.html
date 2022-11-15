@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    #container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    #container > div {
+      border: 1px solid red;
+      width: 80%;
+      height: 100px;
+      padding: 20px;
+      border-radius: 20px;
+    }
+  </style>
+  <body>
+    <h1>Booking Appointment App</h1>
+    <form id="form" onsubmit="store(event)">
+      <label>Name:</label>
+      <input type="text" id="name" placeholder="Enter you name" />
+      <label>Email:</label>
+      <input type="text" id="email" placeholder="Enter your email" />
+      <label>Phone_No:</label>
+      <input type="text" id="phone" placeholder="Enter your phone no" />
+
+      <input type="submit" />
+    </form>
+
+    <div id="container"></div>
+  </body>
+</html>
+
+<script>
+  function store(event) {
+    event.preventDefault();
+
+    let form = document.getElementById("form");
+
+    let name = form.name.value;
+
+    let email = form.email.value;
+
+    let phn = form.phone.value;
+
+    let data = new Person(name, email, phn);
+
+    arr.push(data);
+
+    localStorage.setItem("form", JSON.stringify(arr));
+  }
+
+  function Person(a, b, c, d) {
+    this.name = a;
+
+    this.email = b;
+
+    this.phone = c;
+  }
+  var arr = JSON.parse(localStorage.getItem("form")) || [];
+
+  console.log(arr);
+  arr.forEach(function (el, index) {
+    let div = document.createElement("div");
+
+    let name = document.createElement("li");
+
+    (name.innerText = el.name), el.email, el.phone;
+
+    let email = document.createElement("li");
+
+    email.innerText = el.email;
+
+    let phn = document.createElement("li");
+
+    phn.innerText = el.phone;
+
+    let btn = document.createElement("button");
+
+    btn.innerText = "Delete";
+
+    btn.style.padding = "5px";
+    btn.style.margin = "10px";
+    btn.addEventListener("click", function () {
+      removedata(el, index);
+    });
+
+    let btnn = document.createElement("button");
+    btnn.innerText = "Edit";
+    btnn.style.padding = "5px";
+    btnn.style.margin = "10px";
+    btnn.addEventListener("click", function () {
+      edit(el, index);
+    });
+
+    div.append(name, email, phn, btn, btnn);
+
+    document.getElementById("container").append(div);
+
+    function removedata(el, index) {
+      arr.splice(1, index);
+      window.location.reload();
+
+      localStorage.setItem("form", JSON.stringify(arr));
+    }
+
+    function edit(el, index) {
+      console.log(edit);
+    }
+  });
+</script>
